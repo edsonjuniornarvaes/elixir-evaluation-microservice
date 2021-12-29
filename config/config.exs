@@ -15,7 +15,12 @@ config :heat_tags, HeatTagsWeb.Endpoint,
   url: [host: "localhost"],
   render_errors: [view: HeatTagsWeb.ErrorView, accepts: ~w(json), layout: false],
   pubsub_server: HeatTags.PubSub,
-  live_view: [signing_salt: "nesaFCp2"]
+  live_view: [signing_salt: "gxXhUF5X"]
+
+config :heat_tags, HeatTags.Scheduler,
+  jobs: [
+    {"* * * * * *", {HeatTags.Tags.Count, :call, []}}
+  ]
 
 # Configures the mailer
 #
